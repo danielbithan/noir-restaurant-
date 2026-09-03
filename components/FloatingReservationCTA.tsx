@@ -1,0 +1,4 @@
+'use client';
+import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'framer-motion';
+import { useState } from 'react';
+export function FloatingReservationCTA() { const { scrollY } = useScroll(); const [visible, setVisible] = useState(false); useMotionValueEvent(scrollY, 'change', value => setVisible(value > 640)); return <AnimatePresence>{visible && <><motion.a href="/reservation" initial={{opacity:0,x:22}} animate={{opacity:1,x:0}} exit={{opacity:0,x:22}} className="fixed bottom-7 right-6 z-40 hidden button border-ink bg-foam text-ink shadow-lg md:inline-flex">Reserve a table</motion.a><motion.a href="/reservation" initial={{opacity:0,y:18}} animate={{opacity:1,y:0}} exit={{opacity:0,y:18}} className="fixed inset-x-4 bottom-4 z-40 flex button border-ink bg-ink text-white shadow-xl md:hidden">Reserve a table</motion.a></>}</AnimatePresence>; }
